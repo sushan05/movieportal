@@ -1,0 +1,79 @@
+
+<ng-container *ngIf="showCompare; else movieList">
+    <ng-container *ngTemplateOutlet="compareTemplate"></ng-container>
+</ng-container>
+
+<ng-template #movieList>
+    <h1>Movies</h1>
+
+    <mat-form-field class="mg-r-3">
+        <mat-select placeholder="Filter by year" [(value)]="selectedFilterOptions['year']" (selectionChange)="filterChanged($event.value, 'year')">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mg-r-3">
+        <mat-select placeholder="Filter by Language" [(value)]="selectedFilterOptions['language']" (selectionChange)="filterChanged($event.value, 'language')">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let language of languages" [value]="language">
+                {{language}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <span class="mg-r-3">
+        <button 
+                class="btn-compare" 
+                mat-raised-button color="primary" 
+                (click)="compareMovies()"
+                [matTooltip]='compareToolTip'
+                matTooltipPosition="after"
+            >
+            <span class="mg-r-3">Compare</span>
+            <span class="mat-chip" *ngIf="compareCount">{{compareCount}}</span>
+        </button>
+    </span>
+    <button *ngIf="compareCount" mat-stroked-button color="primary" (click)="clearSelections()">Clear selection</button>
+
+    <mat-grid-list cols="3" rowHeight="1:1.5" *ngIf="movieData?.length; else emptyMessage">
+        <ng-container *ngFor="let movie of movieData">
+            <mat-grid-tile>
+                <mat-card class="example-card col">
+                    <a [routerLink]="movie._id">
+                        <img mat-card-image [src]="movie?.poster" [alt]="movie?.title">
+                    </a>
+                    <div class="pd-b-3">
+                        <mat-card-content class="mr-b-small">
+                            <p><a [routerLink]="movie._id"><b>{{movie?.title}} {{ movie?.year ? "(" + movie?.year + ")" : '' }}</b></a></p>
+                            <div>
+                                <span class="mvi-checkbox">
+                                    <pre><mat-checkbox class="example-margin" (change)="compareSelection($event, movie._id, movie)" [(ngModel)]="moviesToCompare[movie._id]"></mat-checkbox><i> Add to compare</i></pre>
+                                </span>
+                            </div>
+                        </mat-card-content>
+                    </div>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</ng-template>
+
+<ng-template #compareTemplate>
+    <button mat-raised-button color="warn" (click)="showCompare=false;">Close Comparision</button>
+    <mat-grid-list cols="3" rowHeight="1:2.5" >
+        <ng-container *ngFor="let mvi of movieSelectionArray">
+            <mat-grid-tile>
+                <mat-card class="example-card col">
+                    <movie-detail [mviId]="mvi?._id"></movie-detail>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</ng-template>
+
+<ng-template #emptyMessage>
+    No recods found!!
+</ng-template>

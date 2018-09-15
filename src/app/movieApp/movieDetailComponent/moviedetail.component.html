@@ -1,0 +1,100 @@
+<ng-container *ngIf="!compareTemplateOn; else compareTemplate">
+    <ng-container *ngIf="mviData;">
+        <mat-card *ngIf="mviData?._id; else notFound">
+            <mat-card-header>
+                <mat-card-title>
+                    <div class="fs-35">
+                        {{mviData?.title}}
+                        <i>({{mviData?.year}})</i>
+                    </div>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <div>
+                        <div class="imdbRating pd-b-3">
+                            <div class="ratingValue">
+                                <strong title="{{mviData?.imdbRating}} based on {{mviData?.imdbVotes}} user ratings">
+                                    <span>{{mviData?.imdbRating}}</span>
+                                </strong>
+                                <span class="grey">/</span><span class="grey">10</span>
+                            </div>
+                            <span class="small">{{mviData?.imdbVotes}}</span>
+                        </div>    
+                        <div class="pd-b-3 pd-t-3">
+                            <span> {{mviData?.runtime | minToHourPipe}} | {{mviData?.genre}} | {{mviData?.released + ' (' + mviData?.country + ')'}} </span>
+                        </div>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card>
+                <div class="flex-container">
+                    <div class="mg-r-3">
+                        <img [src]="mviData?.poster" alt="">
+                    </div>
+                    <div>
+                        <p>{{mviData?.plot}}</p>
+                        <div><b>Director : </b>{{mviData?.director}}</div>
+                        <div><b>Production : </b>{{mviData?.production}}</div>
+                        <div><b>Stars : </b>{{mviData?.actors}}</div>
+
+                        <ng-container *ngIf="mviData?.ratings">
+                        <p>
+                            <b>Ratings</b><br/>
+                            <ng-container *ngFor="let rate of mviData?.ratings">
+                                <div>
+                                    <b>{{rate.source}} : </b> {{rate.value}}
+                                </div>
+                            </ng-container>
+                        </p>
+                        </ng-container>
+
+                        <div >
+                            <a target="_blank" href="{{'https://www.imdb.com/title/' + mviData?.imdbID}}" mat-flat-button color="primary">Book Tickets</a>      
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-card>
+    </ng-container>
+</ng-container>
+
+<ng-template #compareTemplate>
+        <div style="height: 444px;">
+            <img [src]="mviData?.poster" alt="">
+        </div>
+        <hr/>
+        <div>
+            <a routerLink="['/movies/' + mviData?._id]">
+                {{mviData?.title}}
+                <i>({{mviData?.year}})</i>
+            </a>
+        </div>
+        <hr/>
+        <div><b>Genere : </b> {{ mviData?.genre }}</div>
+        <hr/>
+        <div class="imdbRating">
+            <div class="ratingValue">
+                <strong title="{{mviData?.imdbRating}} based on {{mviData?.imdbVotes}} user ratings">
+                    <span>{{mviData?.imdbRating}}</span>
+                </strong>
+                <span class="grey">/</span><span class="grey">10</span>
+            </div>
+            <span class="small">{{mviData?.imdbVotes}}</span>
+        </div>
+        <hr/>
+        <div>
+            <span> {{mviData?.runtime | minToHourPipe}} | {{mviData?.genre}} | {{mviData?.released + ' (' + mviData?.country + ')'}} </span>
+        </div>
+        <hr/>
+        <div><b>Director : </b>{{mviData?.director ? mviData?.director : '-'}}</div>
+        <hr/>
+        <div><b>Production : </b>{{mviData?.production ? mviData?.production : '-'}}</div>
+        <hr/>
+        <div><b>Stars : </b>{{mviData?.actors ? mviData?.actors : '-'}}</div>
+        <hr/>
+        <div style="height: 108px;"><b>Writer :</b>{{ mviData?.writer ? mviData?.writer : '-' }}</div>
+</ng-template>
+
+<ng-template #notFound>
+        <mvi-notfound></mvi-notfound>
+</ng-template>

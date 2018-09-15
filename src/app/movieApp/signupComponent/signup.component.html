@@ -1,0 +1,25 @@
+<h1>Register</h1>
+
+<div  [style.visibility]="errorMsg ? 'visible' : 'hidden'" [style.color]="'red'">
+    {{errorMsg}}
+</div>
+
+<form (ngSubmit)="onSubmit(register)" class="example-form" [formGroup]="register">
+    <mat-form-field class="example-full-width">
+        <input formControlName="firstName" name="firstName" matInput placeholder="First Name" value="" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input formControlName="lastName" name="lastName" matInput placeholder="Last Name" value="" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input formControlName="userName" name="userName" matInput placeholder="User Name" value=""  />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input formControlName="password" name="password" type="password" matInput placeholder="Password" value="" autocomplete="off" />
+    </mat-form-field>
+
+    <button [disabled]="register.invalid" mat-raised-button color="primary">Sign Up</button>
+</form>

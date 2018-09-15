@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@media (min-width: 576px)
+{
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px)
+{
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px)
+{
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px)
+{
+    .container {
+        max-width: 1140px;
+    }
+}
+
+body{
+    margin: 0;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div{
+    margin-top: 2px;     
+    margin-bottom: 5px;     
+}
+
+a{
+    text-decoration: none;
+}
+
+pre{
+    margin: 0;
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+
+.star-medium .material-icons{
+    font-size: 50px;
+}
+.star-big .material-icons{
+    font-size: 70px;
+}
+.star-medium .mat-icon, .star-big .mat-icon{
+    height: auto;
+    width: auto;
+}
+
+.btn-compare span.mat-chip {
+    display: inline-block;
+    width: 25px;
+    border-radius: 6px;
+    background-color: #283b82;
+  }
+
+.imdbRating {
+    background: url(https://m.media-amazon.com/images/G/01/imdb/images/title/title_overview_sprite-1705639977._V_.png) no-repeat;
+    background-position: -15px -118px;
+    font-size: 11px;
+    height: 40px;
+    line-height: 13px;
+    padding: 2px 0 0 34px;
+    width: 58px;
+}
+
+.imdbRating .ratingValue strong {
+    font-size: 24px;
+    font-weight: normal;
+    font-family: Arial;
+    line-height: 24px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container > div {
+    padding-right:5px; 
+    padding-top: 5px;
+}
+
+.mg-r-3{
+    margin-right: 20px;
+}
+
+.example-card {
+    max-width: 300px;
+}
+
+.pd-b-3{
+    padding-bottom: 3px;
+}
+.pd-t-3{
+    padding-top: 3px;
+}
+
+.br-radius-25{
+    border-radius:25px;
+}
+.mvi-checkbox .mat-checkbox-inner-container{
+    height: 25px;
+}
+.fs-35{
+    font-size: 35px
+}
+.fs-20{
+    font-size: 20px
+}
+.w-300{
+    max-width: 500px;
+}
+.mg-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mr-b-small.mat-card-content{
+    margin-bottom: 0;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.text-red{
+    color: red;
+}
+.mat-card-content p{
+    margin-bottom: 5px;
+}

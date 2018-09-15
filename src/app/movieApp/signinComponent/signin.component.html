@@ -1,0 +1,17 @@
+<h1>Sign In</h1>
+
+<div  [style.visibility]="errorMsg ? 'visible' : 'hidden'" [style.color]="'red'">
+    {{errorMsg}}
+</div>
+
+<form (ngSubmit)="onSubmit(login)" class="example-form" [formGroup]="login">
+    <mat-form-field class="example-full-width">
+        <input formControlName="username" name="username" matInput placeholder="User Name" value="" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input formControlName="password" name="password" type="password" matInput placeholder="Password" value="" autocomplete="off" />
+    </mat-form-field>
+
+    <button [disabled]="login.invalid" mat-raised-button color="primary">Log In</button>
+</form>

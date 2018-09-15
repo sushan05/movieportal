@@ -1,0 +1,8 @@
+<div class="topnav">
+    <div class="container">
+        <a *ngIf="!_auth.isLoggedIn()" routerLinkActive="active" mat-button routerLink="sign-in">Sign In</a>
+        <a *ngIf="!_auth.isLoggedIn()" routerLinkActive="active" mat-button routerLink="sign-up">Sign Up</a>
+        <a *ngIf="_auth.isLoggedIn()" routerLinkActive="active" mat-button routerLink="movies">Movies</a>
+        <a *ngIf="_auth.isLoggedIn()" mat-button (click)="doLogout()" >Logout</a>
+    </div>
+</div>
